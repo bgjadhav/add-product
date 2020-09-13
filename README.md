@@ -12,4 +12,4 @@
 2. npm install 
 
 3. ng serve 
-4. It will open at 
+4. It will open at : http://localhost:4200/
