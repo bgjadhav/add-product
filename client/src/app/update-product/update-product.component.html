@@ -1,0 +1,62 @@
+<div class="col-md-6 mt-3">
+  <h4>Product Details</h4>
+
+  <div *ngIf="isMsg" class="alert alert-success" role="alert">
+    {{sucMsg}}
+  </div>
+  <form (ngSubmit)="onSubmit(productFrom)" #productFrom="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input required type="text"  class="form-control" id="cost"
+      [(ngModel)]="model.productName" name="pname" #pname="ngModel">
+      <div [hidden]="pname.valid || pname.pristine"
+    class="alert alert-danger">
+    Name is required
+  </div>
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="sellingPrice">Cost Per Unit</label>
+      <input required type="number" [disabled]='isReadOnly' class="form-control" id="cost"
+             [(ngModel)]="model.costPrice" name="cost" #cost="ngModel">
+             <div [hidden]="cost.valid || cost.pristine"
+           class="alert alert-danger">
+           Cost is is required in Number format
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="qty">Qty</label>
+      <input required type="number" [disabled]='isReadOnly' class="form-control" id="qty"
+             [(ngModel)]="model.quantity" name="qty" #qty="ngModel">
+             <div [hidden]="qty.valid || qty.pristine"
+           class="alert alert-danger">
+           Qty is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="sellingPrice">Selling Price Per Unit</label>
+      <input required type="number" class="form-control" id="sellingPrice"
+             [(ngModel)]="model.sellingPrice" name="sellingPrice" #sellingPrice="ngModel">
+             <div [hidden]="sellingPrice.valid || sellingPrice.pristine"
+           class="alert alert-danger">
+           selling Price is required in Number format
+      </div>
+      <div [hidden]="sellingPriceValid"
+      class="alert alert-danger">
+      selling Price should greater than cost price
+ </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-success" [disabled]="!productFrom.form.valid">Submit</button>
+    <button *ngIf="!isReadOnly" type="button" class="btn btn-default" (click)="newProduct(); productFrom.reset()">New Product</button>
+    
+  </form>
+
+</div>
